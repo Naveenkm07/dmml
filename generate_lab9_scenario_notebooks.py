@@ -99,29 +99,19 @@ create_lab9_ipynb('N:/dmml_lab/sa SEE/9/9.1_Placement_SVM.ipynb', ds_9_1, model_
 
 
 # 9.2 Iris
-ds_9_2 = """# Mocking Iris Data
-data = {
-    'SepalLength': [5.1, 4.9, 7.0, 6.4, 6.3, 5.8],
-    'SepalWidth': [3.5, 3.0, 3.2, 3.2, 3.3, 2.7],
-    'PetalLength': [1.4, 1.4, 4.7, 4.5, 6.0, 5.1],
-    'PetalWidth': [0.2, 0.2, 1.4, 1.5, 2.5, 1.9],
-    'Species': ['Setosa', 'Setosa', 'Versicolor', 'Versicolor', 'Virginica', 'Virginica']
-}
-df = pd.DataFrame(data)
+ds_9_2 = """from sklearn.datasets import load_iris
 
-# Encode Target
-le = LabelEncoder()
-df['Species'] = le.fit_transform(df['Species'])
-
-X = df.drop('Species', axis=1)
-y = df['Species']
+# Load Data
+data = load_iris()
+X = pd.DataFrame(data.data, columns=data.feature_names)
+y = data.target
 
 # Standardize Features BEFORE split
 sc = StandardScaler()
 X = sc.fit_transform(X)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-df.head()"""
+# Split Data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)"""
 model_9_2 = """# SVC Model
 classifier = SVC(kernel='linear', random_state=42)
 classifier.fit(X_train, y_train)
@@ -134,29 +124,19 @@ create_lab9_ipynb('N:/dmml_lab/sa SEE/9/9.2_Iris_SVM.ipynb', ds_9_2, model_9_2)
 
 
 # 9.3 Breast Cancer
-ds_9_3 = """# Mocking Breast Cancer Data
-data = {
-    'Radius': [17.99, 20.57, 11.42, 14.45, 13.54, 13.08],
-    'Texture': [10.38, 17.77, 20.38, 20.22, 14.36, 15.71],
-    'Perimeter': [122.80, 132.90, 77.58, 94.25, 87.46, 85.63],
-    'Area': [1001.0, 1326.0, 386.1, 642.7, 566.3, 520.0],
-    'Diagnosis': ['Malignant', 'Malignant', 'Benign', 'Benign', 'Malignant', 'Benign']
-}
-df = pd.DataFrame(data)
+ds_9_3 = """from sklearn.datasets import load_breast_cancer
 
-# Encode Target
-le = LabelEncoder()
-df['Diagnosis'] = le.fit_transform(df['Diagnosis'])
-
-X = df.drop('Diagnosis', axis=1)
-y = df['Diagnosis']
+# Load Data
+data = load_breast_cancer()
+X = pd.DataFrame(data.data, columns=data.feature_names)
+y = data.target
 
 # Standardize Features BEFORE split
 sc = StandardScaler()
 X = sc.fit_transform(X)
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-df.head()"""
+# Split Data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)"""
 model_9_3 = """# SVC Model
 classifier = SVC(kernel='linear', random_state=42)
 classifier.fit(X_train, y_train)
