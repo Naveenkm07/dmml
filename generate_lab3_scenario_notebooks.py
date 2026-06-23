@@ -12,7 +12,7 @@ def create_lab3_ipynb(filename, dataset_setup, encoding_setup):
         "outputs": [],
         "source": [
             "import pandas as pd\n",
-            "from sklearn.preprocessing import LabelEncoder, OneHotEncoder\n"
+            "from sklearn.preprocessing import LabelEncoder\n"
         ]
     })
     
@@ -73,18 +73,11 @@ enc_3_1 = """# Label Encoding for Gender (only 2 categories)
 le = LabelEncoder()
 df['Gender'] = le.fit_transform(df['Gender'])
 
-# One-Hot Encoding for Payment Method (No specific order)
-ohe = OneHotEncoder(sparse_output=False) # or sparse=False for older sklearn
-encoded_payment = ohe.fit_transform(df[['Payment Method']])
-
-# Create a new DataFrame with the One-Hot Encoded columns
-encoded_df = pd.DataFrame(encoded_payment, columns=ohe.get_feature_names_out(['Payment Method']))
-
-# Combine everything together
-df_final = pd.concat([df.drop('Payment Method', axis=1), encoded_df], axis=1)
+# One-Hot Encoding for Payment Method using pd.get_dummies()
+df = pd.get_dummies(df, columns=['Payment Method'])
 
 print("\\n--- After One-Hot Encoding ---")
-display(df_final)"""
+display(df)"""
 create_lab3_ipynb('N:/dmml_lab/sa SEE/3/3.1_Customer_Purchase_Encoding.ipynb', ds_3_1, enc_3_1)
 
 
@@ -102,15 +95,11 @@ enc_3_2 = """# Label Encoding for Grade Category (Ordered: Poor, Average, Excell
 le = LabelEncoder()
 df['Grade Category'] = le.fit_transform(df['Grade Category'])
 
-# One-Hot Encoding for Study Level (Unordered)
-ohe = OneHotEncoder(sparse_output=False)
-encoded_study = ohe.fit_transform(df[['Study Level']])
-
-encoded_df = pd.DataFrame(encoded_study, columns=ohe.get_feature_names_out(['Study Level']))
-df_final = pd.concat([df.drop('Study Level', axis=1), encoded_df], axis=1)
+# One-Hot Encoding for Study Level using pd.get_dummies()
+df = pd.get_dummies(df, columns=['Study Level'])
 
 print("\\n--- After One-Hot Encoding ---")
-display(df_final)"""
+display(df)"""
 create_lab3_ipynb('N:/dmml_lab/sa SEE/3/3.2_Student_Performance_Encoding.ipynb', ds_3_2, enc_3_2)
 
 
@@ -128,15 +117,11 @@ enc_3_3 = """# Label Encoding for Department
 le = LabelEncoder()
 df['Department'] = le.fit_transform(df['Department'])
 
-# One-Hot Encoding for Job Role
-ohe = OneHotEncoder(sparse_output=False)
-encoded_role = ohe.fit_transform(df[['Job Role']])
-
-encoded_df = pd.DataFrame(encoded_role, columns=ohe.get_feature_names_out(['Job Role']))
-df_final = pd.concat([df.drop('Job Role', axis=1), encoded_df], axis=1)
+# One-Hot Encoding for Job Role using pd.get_dummies()
+df = pd.get_dummies(df, columns=['Job Role'])
 
 print("\\n--- After One-Hot Encoding ---")
-display(df_final)"""
+display(df)"""
 create_lab3_ipynb('N:/dmml_lab/sa SEE/3/3.3_Employee_Encoding.ipynb', ds_3_3, enc_3_3)
 
 
@@ -154,15 +139,11 @@ enc_3_4 = """# Label Encoding for Buying Price (Ordered)
 le = LabelEncoder()
 df['Buying Price'] = le.fit_transform(df['Buying Price'])
 
-# One-Hot Encoding for Safety Rating
-ohe = OneHotEncoder(sparse_output=False)
-encoded_safety = ohe.fit_transform(df[['Safety Rating']])
-
-encoded_df = pd.DataFrame(encoded_safety, columns=ohe.get_feature_names_out(['Safety Rating']))
-df_final = pd.concat([df.drop('Safety Rating', axis=1), encoded_df], axis=1)
+# One-Hot Encoding for Safety Rating using pd.get_dummies()
+df = pd.get_dummies(df, columns=['Safety Rating'])
 
 print("\\n--- After One-Hot Encoding ---")
-display(df_final)"""
+display(df)"""
 create_lab3_ipynb('N:/dmml_lab/sa SEE/3/3.4_Car_Evaluation_Encoding.ipynb', ds_3_4, enc_3_4)
 
 
@@ -180,15 +161,11 @@ enc_3_5 = """# Label Encoding for Visitor Type
 le = LabelEncoder()
 df['Visitor Type'] = le.fit_transform(df['Visitor Type'])
 
-# One-Hot Encoding for Browser Type
-ohe = OneHotEncoder(sparse_output=False)
-encoded_browser = ohe.fit_transform(df[['Browser Type']])
-
-encoded_df = pd.DataFrame(encoded_browser, columns=ohe.get_feature_names_out(['Browser Type']))
-df_final = pd.concat([df.drop('Browser Type', axis=1), encoded_df], axis=1)
+# One-Hot Encoding for Browser Type using pd.get_dummies()
+df = pd.get_dummies(df, columns=['Browser Type'])
 
 print("\\n--- After One-Hot Encoding ---")
-display(df_final)"""
+display(df)"""
 create_lab3_ipynb('N:/dmml_lab/sa SEE/3/3.5_Online_Shopping_Encoding.ipynb', ds_3_5, enc_3_5)
 
 print("Lab 3 Notebooks rewritten successfully!")
