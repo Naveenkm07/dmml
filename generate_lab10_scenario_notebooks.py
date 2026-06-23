@@ -234,8 +234,8 @@ data = {
 df = pd.DataFrame(data)
 
 le = LabelEncoder()
-for col in ['Job Role', 'Attrition']:
-    df[col] = le.fit_transform(df[col])
+df['Job Role'] = le.fit_transform(df['Job Role'])
+df['Attrition'] = le.fit_transform(df['Attrition'])
 
 X = df.drop('Attrition', axis=1)
 y = df['Attrition']
