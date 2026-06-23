@@ -108,9 +108,12 @@ data = {
 df = pd.DataFrame(data)
 
 # Encode categorical variables
-for col in df.columns:
-    le = LabelEncoder()
-    df[col] = le.fit_transform(df[col])
+le = LabelEncoder()
+df['Fever'] = le.fit_transform(df['Fever'])
+df['Cough'] = le.fit_transform(df['Cough'])
+df['Fatigue'] = le.fit_transform(df['Fatigue'])
+df['Headache'] = le.fit_transform(df['Headache'])
+df['Disease'] = le.fit_transform(df['Disease'])
 
 X = df.drop('Disease', axis=1)
 y = df['Disease']
@@ -164,8 +167,9 @@ data = {
 df = pd.DataFrame(data)
 
 le = LabelEncoder()
-for col in df.columns:
-    df[col] = le.fit_transform(df[col])
+df['Employment Status'] = le.fit_transform(df['Employment Status'])
+df['Loan History'] = le.fit_transform(df['Loan History'])
+df['Loan Approved'] = le.fit_transform(df['Loan Approved'])
 
 X = df.drop('Loan Approved', axis=1)
 y = df['Loan Approved']
@@ -192,8 +196,10 @@ data = {
 df = pd.DataFrame(data)
 
 le = LabelEncoder()
-for col in df.columns:
-    df[col] = le.fit_transform(df[col])
+df['Weather'] = le.fit_transform(df['Weather'])
+df['Temperature'] = le.fit_transform(df['Temperature'])
+df['Humidity'] = le.fit_transform(df['Humidity'])
+df['Play'] = le.fit_transform(df['Play'])
 
 X = df.drop('Play', axis=1)
 y = df['Play']
